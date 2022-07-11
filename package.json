@@ -1,0 +1,26 @@
+{
+  "name": "js-study",
+  "version": "1.0.0",
+  "description": "js study",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yoonbeagle/js-study.git"
+  },
+  "keywords": [
+    "js",
+    "study"
+  ],
+  "author": "Yoonbeagle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Yoonbeagle/js-study/issues"
+  },
+  "homepage": "https://github.com/Yoonbeagle/js-study#readme"
+}
