@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>끝말잇기 게임</title>
+    <style>
+        *{font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;box-sizing:border-box;}
+        body{text-align:center;}
+        h1{margin-bottom:20px;color:blueviolet;font-size:1.5rem;font-weight:bold;}
+        h2{font-size:20px;}
+        #order{display:inline-block;width:16px;}
+        .word-wrapper{color:seagreen;font-size:18px;font-weight:bold;}
+        .word-wrapper span{display:inline-block;width:80px;border-bottom:2px dashed cadetblue;color:tomato;}
+        .input-wrapper{}
+        .input-wrapper input{display:inline-block;width:100px;height:30px;margin-right:5px;padding:0 10px;}
+        .input-wrapper button{display:inline-block;width:40px;height:30px;border:1px solid olivedrab;cursor:pointer;}
+    </style>
+</head>
+<body>
+    <div class="word-relay">
+        <h1>쿵쿵따~리 쿵쿵따!<br>쿵쿵따~리 쿵쿵따!<br>쿵!쿵!쿵!쿵!</h1>
+        <h2><span id="order">1</span>번째 참가자</h2>
+        <div class="input-wrapper">
+            <span class="first-text"></span><input type="text" maxlength="3">
+            <button>입력</button>
+        </div>
+        <p class="word-wrapper"><span id="word"></span>! 쿵쿵따!</p>
+    </div>
+    <script>
+        const $word = document.getElementById('word');
+        //const $firstTxt = document.querySelector('.first-text');
+        const $input = document.querySelector('input');
+        const $btn = document.querySelector('button');
+        const $order = document.getElementById('order');
+        let word, newWord;
+
+        const num = Number(prompt('몇 명이 참여하나요?'));
+        if(num && num !==0){
+            $input.focus();
+            word = newWord;
+
+            const onClickBtn = ()=>{
+                if( !word || word[word.length-1] === newWord[0] && newWord.length === 3 ) {
+                    word = newWord;
+                    $word.textContent = word;
+                    //$firstTxt.textContent = word.substr(2,1);
+                    $input.value = '';
+
+                    if(word.length !== 3) {
+                        console.log('첫단어가세글자아님', word, newWord);
+                        alert('땡!!!');
+                        $input.value = '';
+                        word = '';
+                        $word.textContent = '';
+                    }
+
+                    const order = Number($order.textContent);
+                    if(order >= num) {
+                        $order.textContent = 1
+                    } else {
+                        $order.textContent = order+1;
+                    }
+                } else {
+                    console.log('틀렸음', word, newWord);
+                    alert('땡!!');
+                    $input.value = '';
+                }
+            }
+
+            const onInputText = (evt)=>{
+                newWord = evt.target.value;
+            }
+
+            $btn.addEventListener('click', onClickBtn);
+            $input.addEventListener('input', onInputText);
+            $input.addEventListener('keypress', (key)=>{
+                if(key.keyCode === 13){
+                    onClickBtn();
+                }
+            });
+        }
+    </script>
+    
+</body>
+</html>
